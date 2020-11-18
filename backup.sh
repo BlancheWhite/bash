@@ -4,10 +4,14 @@
 
 function backup {
 
-if [ -z $1 ]; then
+if [ $# -eq 0 ]; then
 	user=$(whoami)
+else
+	for user in $@; do
+		user=$user
+	done
 fi
-	user=$1
+
 # Check if this is ok, as find from total_files search in /home/svadmin
 input=/home/$user
 output=/tmp/${user}_home_$(date +%Y-%m-%d_%H%M%S.tar.gz)
