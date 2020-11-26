@@ -49,6 +49,19 @@ echo "First arg: ${1}"
 echo "Second arg: ${2}"
 echo "Third arg: ${3}"
 
+# Inspect OPTIND
+echo "OPTIND: ${OPTIND}"
+
+# Remove the options while leaving the remaining arguments
+shift "$(( OPTIND -1 ))"
+echo "Number of args: ${#}"
+echo "All args: ${@}"
+echo "First arg: ${1}"
+echo "Second arg: ${2}"
+echo "Third arg: ${3}"
+
+echo 'After the shift:'
+
 log 'GENERATING A PASSWORD.'
 PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c${LENGHT})
 if [[ "${USE_SPECIAL_CHARACTER}" = 'true' ]]
